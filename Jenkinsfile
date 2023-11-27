@@ -7,12 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Get Source') {
-    		steps {
-    		    // Get some code from a GitHub repository
-                git 'https://github.com/alexant055/selenium-testng-framework.git'
-    		}
-    	}
     	stage('Unit Test') {
     		steps {
     		     sh "mvn clean test"
