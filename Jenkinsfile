@@ -24,8 +24,7 @@ pipeline {
                 success {
                     emailext (attachLog: true, 
                     body: '''Hello, Here is the test result of the latest build.Thanks,''', 
-                    compressLog: true, 
-                    recipientProviders: [buildUser()], 
+                    compressLog: true,  
                     subject: 'Selenium-TestNG-Report', 
                     to: 'alexander.kirubhakaran@gmail.com')
                 }
@@ -34,16 +33,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
+                sh "mvn clean package -Dmaven.test.skip"
             }
         }
     }
