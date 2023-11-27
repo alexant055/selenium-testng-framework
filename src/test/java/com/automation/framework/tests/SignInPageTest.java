@@ -10,7 +10,7 @@ import com.automation.framework.TestBase;
 
 public class SignInPageTest extends TestBase {
 
-	@Test
+	@Test(description = "Verify user able to enter email in sign-in page.")
 	public void verifyUserAbleEnterEmail(Method method) {
 		startTest(method.getName(), "Verify user able to enter email in sign-in page.");
 		pageManager.getHomePage().navigateToSignInPage();
